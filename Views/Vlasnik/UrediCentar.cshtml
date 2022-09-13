@@ -1,0 +1,54 @@
+﻿@using WebProjekat.Models
+@model WebProjekat.Models.FitnesCentar
+@{
+    ViewBag.Title = "UrediCentar";
+}
+
+<h2>UrediCentar</h2>
+<p>@ViewBag.Message</p>
+<div>
+    <form action="~/Vlasnik/UrediFitnesCentar" method="post">
+        <table>
+            <tr>
+                <td>Naziv:</td>
+                <td><input readonly type="text" value="@Model.Naziv" name="Naziv" /></td>
+            </tr>
+            <tr>
+                <td>Adresa:</td>
+                <td><input type="text"value="@Model.Naziv" name="Adresa" /></td>
+            </tr>
+            <tr>
+                <td>Godina otvaranja:</td>
+                <td><input readonly type="number" value="@Model.Godina" min="1970" max="2030" name="Godina" /></td>
+            </tr>
+            <tr>
+                <td>Cena mesecne clanarine:</td>
+                <td><input type="number" value="@Model.CenaMes" name="CenaMes" /></td>
+            </tr>
+
+            <tr>
+                <td>Cena godisnje clanarine:</td>
+                <td><input type="number"value="@Model.CenaGod" name="CenaGod" /></td>
+            </tr>
+            <tr>
+                <td>Cena jednog treninga:</td>
+                <td><input type="number" value="@Model.CenaDan" name="CenaDan" /></td>
+            </tr> 
+            <tr>
+                <td>Cena grupnog treninga:</td>
+                <td><input type="number" value="@Model.CenaGrupa" name="CenaGrupa" /></td>
+            </tr>
+            <tr>
+                <td>Cena treninga sa personalnim trenerom:</td>
+                <td><input type="number"value="@Model.CenaPersonal" name="CenaPersonal" /></td>
+            </tr>
+
+
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Uredi Centar" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

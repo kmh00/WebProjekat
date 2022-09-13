@@ -17,6 +17,7 @@ namespace WebProjekat.Models
         int cenaDan;
         int cenaGrupa;
         int cenaPersonal;
+        bool obrisan;
 
         public FitnesCentar(string naziv, string adresa, int godina, Korisnik vlasnik, int cenaMes, int cenaGod, int cenaDan, int cenaGrupa, int cenaPersonal)
         {
@@ -29,6 +30,7 @@ namespace WebProjekat.Models
             this.cenaDan = cenaDan;
             this.cenaGrupa = cenaGrupa;
             this.cenaPersonal = cenaPersonal;
+            this.obrisan = false;
         }
         public FitnesCentar() { }
 
@@ -41,5 +43,6 @@ namespace WebProjekat.Models
         public int CenaGrupa { get => cenaGrupa; set => cenaGrupa = value; }
         public int CenaPersonal { get => cenaPersonal; set => cenaPersonal = value; }
         public int Godina { get => godina; set => godina = value; }
+        public bool Obrisan { get => obrisan; set => obrisan = value; }
     }
 }

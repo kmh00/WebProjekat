@@ -20,6 +20,36 @@ namespace WebProjekat.Models.Data
             }
             return fitnesCentri;
         }
+        public static bool DodajFitnesCentar(FitnesCentar centar)
+        {
+            List<FitnesCentar> centri = GetAllFitnesCentri();
+            FitnesCentar f = centri.Find(x => x.Naziv == centar.Naziv);
+            if(f!= null)
+            {
+                return false;
+            }
+            centri.Add(centar);
+            XmlSerializer xml = new XmlSerializer(typeof(List<FitnesCentar>));
+            using (var streamWriter = File.Create(filename))
+            {
+                xml.Serialize(streamWriter, centri);
+            }
+            return true;
+        }
+        public static void UrediFitnesCentar(FitnesCentar centar)
+        {
+            List<FitnesCentar> centri = GetAllFitnesCentri();
+            FitnesCentar k = centri.Find(x => x.Naziv == centar.Naziv);
+            
+            centri.Remove(k);
+            centri.Add(centar);
+            XmlSerializer xml = new XmlSerializer(typeof(List<FitnesCentar>));
+            using (var streamWriter = File.Create(filename))
+            {
+                xml.Serialize(streamWriter, centri);
+            }
+            ;
+        }
 
     }
 }

@@ -1,0 +1,68 @@
+﻿@using WebProjekat.Models
+@using WebProjekat.Models.Data
+@model IEnumerable<FitnesCentar>
+@{
+    ViewBag.Title = "VlasnikCentri";
+}
+
+<h2>Fitness centri</h2>
+<table border="1">
+
+
+    <tr>
+        <th>Naziv</th>
+        <th>Adresa</th>
+        <th>Godina otvaranja</th>
+        <th>Vlasnik</th>
+        <th>Cena mesecne clanarine</th>
+        <th>Cena godisnje clanarine</th>
+        <th>Cena treninga</th>
+        <th>Cena grupnog treninga</th>
+        <th>Cena personalnog trenera</th>
+    </tr>
+    @foreach (var v in FitnesCentarData.GetAllFitnesCentri())
+    {
+        if (!v.Obrisan && ((Korisnik)Session["Korisnik"]).KorIme == v.Vlasnik.KorIme)
+        {
+            <tr>
+                <td>@v.Naziv</td>
+                <td>@v.Adresa</td>
+                <td>@v.Godina</td>
+
+                <td>@v.Vlasnik.KorIme</td>
+                <td>@v.CenaMes</td>
+                <td>@v.CenaGod</td>
+                <td>@v.CenaDan</td>
+                <td>@v.CenaGrupa</td>
+                <td>@v.CenaPersonal</td>
+                <td>
+                    <form method="post" action="~/FitnessCentar/Detalji">
+                        <input type="text" name="naziv" value="@v.Naziv" hidden />
+                        <input type="submit" value="Detalji" />
+                    </form>
+                </td>
+                <td>
+                    <form method="post" action="~/Vlasnik/UrediCentar">
+                        <input type="text" name="naziv" value="@v.Naziv" hidden />
+                        <input type="submit" value="Uredi" />
+                    </form>
+                </td>
+
+                <td>
+                    <form action="~/Vlasnik/ObrisiCentar">
+                        <input type="text" value="@v.Naziv" hidden name="naziv" />
+                        <input type="submit" value="Obrisi" />
+                    </form>
+                </td>
+            </tr>
+        }
+    }
+</table>
+<br>
+<form action="~/Vlasnik/DodajFitnesCentar">
+    <input type="submit" value="Dodaj fitnes centar"/>
+</form>
+    
+
+
+

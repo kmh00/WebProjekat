@@ -25,6 +25,8 @@
             </tr>
             @foreach (var centar in Model)
             {
+                if (!centar.Obrisan)
+                {
                 <tr>
                     <td>@centar.Naziv</td>
                     <td>@centar.Adresa</td>
@@ -36,6 +38,7 @@
                         </form>
                     </td>
                 </tr>
+                }
 
             }
         </table>
