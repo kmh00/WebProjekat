@@ -123,6 +123,7 @@
     <Compile Include="Controllers\FitnesCentarController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProfilController.cs" />
+    <Compile Include="Controllers\TrenerController.cs" />
     <Compile Include="Controllers\VlasnikController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -180,6 +181,9 @@
     <Content Include="Views\Vlasnik\VlasnikCentri.cshtml" />
     <Content Include="Views\Vlasnik\DodajCentar.cshtml" />
     <Content Include="Views\Vlasnik\UrediCentar.cshtml" />
+    <Content Include="Views\Trener\TrenerTreninzi.cshtml" />
+    <Content Include="Views\Vlasnik\Treneri.cshtml" />
+    <Content Include="Views\Vlasnik\DodajTrenera.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

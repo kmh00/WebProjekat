@@ -45,6 +45,17 @@ namespace WebProjekat.Controllers
         {
             FitnesCentar centar = (FitnesCentarData.GetAllFitnesCentri()).Find(x => x.Naziv == naziv);
             centar.Obrisan = true;
+            List<Korisnik> korinici = KorisnikData.GetAllKorisnici();
+            foreach (Korisnik korisnik in korinici)
+            {
+                if(korisnik.Uloga == Uloga.trener)
+                {
+                    if(korisnik.FitnesCentar.Naziv == naziv)
+                    {
+                        Blokiraj(korisnik.KorIme);
+                    }
+                }
+            }
             FitnesCentarData.UrediFitnesCentar(centar);
             return View("VlasnikCentri");
         }
@@ -65,6 +76,84 @@ namespace WebProjekat.Controllers
             FitnesCentar centar = new FitnesCentar(Naziv, Adresa, Godina, vlasnik, CenaMes, CenaGod, CenaDan, CenaGrupa, CenaPersonal);
             FitnesCentarData.UrediFitnesCentar(centar);
             return View("VlasnikCentri");
+        }
+
+        public ActionResult Treneri(string naziv)
+        {
+            List<Korisnik> korisnici = KorisnikData.GetAllKorisnici();
+            List<Korisnik> treneri = new List<Korisnik>();
+            foreach (Korisnik i in korisnici)
+            {
+                if(i.Uloga== Uloga.trener && i.FitnesCentar.Naziv== naziv)
+                {
+                    treneri.Add(i);
+                }
+            }
+            return View("Treneri",treneri);
+        }
+
+        public ActionResult DodajTrenera()
+        {
+            Korisnik vlasnik = (Korisnik)Session["Korisnik"];
+            List<FitnesCentar> centri = FitnesCentarData.GetAllCentriByVlasnik(vlasnik);
+            return View("DodajTrenera", centri);
+        }
+        public ActionResult UpisiTrenera(string KorIme, string Lozinka, string Ime, string Prezime,string FitnesCentri, string Email, Pol pol, DateTime DatRodj)
+        {
+            List<Korisnik> korisnici = KorisnikData.GetAllKorisnici();
+            
+            
+            if (KorIme == null || Lozinka == null || Ime == null || Prezime == null || Email == null || DatRodj == null || FitnesCentri==null)
+            {
+                ViewBag.Message = $"Molimo popunite polja.";
+                    return DodajTrenera();
+            }
+
+            foreach (Korisnik k in korisnici)
+            {
+                if (k.KorIme == KorIme)
+                {
+                    ViewBag.Message = $"Korisnik sa unesenim korisnickim imenom vec postoji.";
+                    return DodajTrenera();
+                }
+            }
+
+            if (KorIme.Length < 3)
+            {
+                ViewBag.Message = $"Korsinicko ime mora imati vise od 3 karaktera.";
+                return DodajTrenera();
+            }
+            if (Lozinka.Length < 6)
+            {
+                ViewBag.Message = $"Lozinka mora da ima bar 6 karaktera.";
+                return DodajTrenera();
+            }
+            if (!Email.Contains("@"))
+            {
+                ViewBag.Message = $"Nepostojeci email.";
+                return DodajTrenera();
+            }
+            if (DatRodj > DateTime.Now)
+            {
+                ViewBag.Message = $"Unesite ispravan datum rodjenja.";
+                return DodajTrenera();
+            }
+
+            Korisnik korisnik = new Korisnik(KorIme, Lozinka, Ime, Prezime, pol, Email, DatRodj, Uloga.trener);
+            List<FitnesCentar> centri = FitnesCentarData.GetAllFitnesCentri();
+            FitnesCentar fc = centri.Find(k => k.Naziv.Equals(FitnesCentri));
+            korisnik.FitnesCentar = fc;
+            KorisnikData.DodajKorisnika(korisnik);
+            return View("VlasnikCentri");
+        }
+        public ActionResult Blokiraj(string KorIme)
+        {
+            List<Korisnik> korisnici = KorisnikData.GetAllKorisnici();
+            Korisnik korisnik = korisnici.Find(k=> k.KorIme.Equals(KorIme));
+            korisnik.Blokiran = true;
+            KorisnikData.Uredikorisnika(korisnik);
+            return View("VlasnikCentri");
+            
         }
     }
 }

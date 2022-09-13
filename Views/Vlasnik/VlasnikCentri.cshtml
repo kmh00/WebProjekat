@@ -36,6 +36,12 @@
                 <td>@v.CenaGrupa</td>
                 <td>@v.CenaPersonal</td>
                 <td>
+                    <form method="post" action="~/Vlasnik/Treneri">
+                        <input type="text" name="naziv" value="@v.Naziv" hidden />
+                        <input type="submit" value="Treneri" />
+                    </form>
+                </td>
+                <td>
                     <form method="post" action="~/FitnessCentar/Detalji">
                         <input type="text" name="naziv" value="@v.Naziv" hidden />
                         <input type="submit" value="Detalji" />

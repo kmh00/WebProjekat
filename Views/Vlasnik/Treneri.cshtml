@@ -1,0 +1,36 @@
+﻿@using WebProjekat.Models
+@model  IEnumerable<Korisnik>
+@{
+    ViewBag.Title = "Treneri";
+}
+
+<h2>Treneri</h2>
+<table border="1">
+    <tr>
+        <th>Korisnicko ime trenera</th>
+        <th>Ime trenera</th>
+        <th>Prezime trenera</th>
+    </tr>
+    @foreach (var trener in Model)
+    {
+        if (!trener.Blokiran)
+        {
+            <tr>
+                <td>@trener.KorIme</td>
+                <td>@trener.Ime</td>
+                <td>@trener.Prezime</td>
+                <td>
+                    <form method="post" action="~/Vlasnik/Blokiraj">
+                        <input type="text" name="KorIme" value="@trener.KorIme" hidden />
+                        <input type="submit" value="Blokiraj" />
+                    </form>
+                </td>
+            </tr>
+        }
+
+    }
+</table>
+<form method="post" action="~/Vlasnik/DodajTrenera">
+    <input type="submit" value="Dodaj Trenera" />
+</form>
+

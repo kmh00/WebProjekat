@@ -1,12 +1,13 @@
-﻿
+﻿@using WebProjekat.Models
+@model  IEnumerable<FitnesCentar>
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "DodajTrenera";
 }
 
-<h2>Registracija</h2>
+<h2>DodajTrenera</h2>
 <p>@ViewBag.Message</p>
 <div>
-    <form action="Register" method="post">
+    <form action="UpisiTrenera" method="post">
         <table>
             <tr>
                 <td>Korisnicko ime:</td>
@@ -34,8 +35,18 @@
                 </td>
             </tr>
             <tr>
-                <td>Fitness centar:</td>
-                <td><input type="text" name="fc" /></td>
+                <td>Fitnes Centri:</td>
+                <td>
+                    <select name="FitnesCentri" id="centri">
+                        @foreach (var i in Model)
+                        {
+                            if (i.Obrisan == false)
+                            {
+                             <option value="@i.Naziv">@i.Naziv</option>
+                            }
+                        }
+                    </select>
+                </td>
             </tr>
             <tr>
                 <td>Email:</td>

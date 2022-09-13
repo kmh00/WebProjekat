@@ -21,7 +21,8 @@ namespace WebProjekat.Models
         List<string> GrupniTren;
         List<string> trenira;
         FitnesCentar fitnesCentar;
-        FitnesCentar vlasnik;
+        List<FitnesCentar> vlasnik;
+        bool blokiran;
         public Korisnik() { }
 
         public Korisnik(string korIme, string lozinka, string ime, string prezime, Pol pol, string email, DateTime datumRodj, Uloga uloga)
@@ -34,6 +35,7 @@ namespace WebProjekat.Models
             this.Email = email;
             this.DatumRodj = datumRodj;
             this.Uloga = uloga;
+            this.blokiran = false;
             
             if(uloga == Uloga.posetilac)
             {
@@ -42,7 +44,13 @@ namespace WebProjekat.Models
             else if(uloga == Uloga.trener)
             {
                 List<string> trenira = new List<string>();
+                this.FitnesCentar = null;
             }
+            if(uloga == Uloga.vlasnik)
+            {
+                List<FitnesCentar> vlasnik = new List<FitnesCentar>();
+            }
+            
 
         }
 
@@ -57,6 +65,7 @@ namespace WebProjekat.Models
         public List<string> GrupniTren1 { get => GrupniTren; set => GrupniTren = value; }
         public List<string> Trenira { get => trenira; set => trenira = value; }
         public FitnesCentar FitnesCentar { get => fitnesCentar; set => fitnesCentar = value; }
-        public FitnesCentar Vlasnik { get => vlasnik; set => vlasnik = value; }
+        public List<FitnesCentar> Vlasnik { get => vlasnik; set => vlasnik = value; }
+        public bool Blokiran { get => blokiran; set => blokiran = value; }
     }
 }

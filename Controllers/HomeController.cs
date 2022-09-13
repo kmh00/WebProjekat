@@ -25,6 +25,11 @@ namespace WebProjekat.Controllers
                 ViewBag.Message = $"Korisnik ne postoji!";
                 return View("Login");
             }
+            else if(korisnik.Blokiran == true)
+            {
+                ViewBag.Message = $"Korisnik je blokiran!";
+                return View("Login");
+            }
             Session["Korisnik"] = korisnik;
             return RedirectToAction("Index");
             

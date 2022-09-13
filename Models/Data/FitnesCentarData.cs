@@ -20,6 +20,17 @@ namespace WebProjekat.Models.Data
             }
             return fitnesCentri;
         }
+        public static List<FitnesCentar> GetAllCentriByVlasnik(Korisnik korisnik)
+        {
+            List<FitnesCentar> centri = GetAllFitnesCentri();
+            List<FitnesCentar> list = new List<FitnesCentar>();
+            foreach(FitnesCentar centar in centri)
+            {
+                if(centar.Vlasnik.KorIme == korisnik.KorIme)
+                  list.Add(centar);
+            }
+            return list;
+        }
         public static bool DodajFitnesCentar(FitnesCentar centar)
         {
             List<FitnesCentar> centri = GetAllFitnesCentri();
