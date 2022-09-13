@@ -10,12 +10,13 @@ namespace WebProjekat.Models
     {
         string naziv;
         Tip tip;
+        FitnesCentar fitnesCentar;
         int trajanje;
         DateTime vreme;
         int maxPosjetilaca;
         List<Korisnik> posjetioci;
 
-        public GrupniTrening(string naziv, Tip tip, int trajanje, DateTime vreme, int maxPosjetilaca, List<Korisnik> posjetioci)
+        public GrupniTrening(string naziv, Tip tip, int trajanje, DateTime vreme, int maxPosjetilaca, List<Korisnik> posjetioci, FitnesCentar fitnesCentar)
         {
             this.Naziv = naziv;
             this.Tip = tip;
@@ -23,7 +24,10 @@ namespace WebProjekat.Models
             this.Vreme = vreme;
             this.MaxPosjetilaca = maxPosjetilaca;
             this.Posjetioci = posjetioci;
+            this.FitnesCentar = fitnesCentar;
         }
+
+        public GrupniTrening() { }
 
         public string Naziv { get => naziv; set => naziv = value; }
         public Tip Tip { get => tip; set => tip = value; }
@@ -31,5 +35,6 @@ namespace WebProjekat.Models
         public DateTime Vreme { get => vreme; set => vreme = value; }
         public int MaxPosjetilaca { get => maxPosjetilaca; set => maxPosjetilaca = value; }
         public List<Korisnik> Posjetioci { get => posjetioci; set => posjetioci = value; }
+        public FitnesCentar FitnesCentar { get => fitnesCentar; set => fitnesCentar = value; }
     }
 }

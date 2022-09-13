@@ -5,10 +5,12 @@ using System.Web;
 
 namespace WebProjekat.Models
 {
+    
     public class FitnesCentar
     {
         string naziv;
         string adresa;
+        int godina;
         Korisnik vlasnik;
         int cenaMes;
         int cenaGod;
@@ -16,17 +18,19 @@ namespace WebProjekat.Models
         int cenaGrupa;
         int cenaPersonal;
 
-        public FitnesCentar(string naziv, string adresa, Korisnik vlasnik, int cenaMes, int cenaGod, int cenaDan, int cenaGrupa, int cenaPersonal)
+        public FitnesCentar(string naziv, string adresa, int godina, Korisnik vlasnik, int cenaMes, int cenaGod, int cenaDan, int cenaGrupa, int cenaPersonal)
         {
-            this.Naziv = naziv;
-            this.Adresa = adresa;
-            this.Vlasnik = vlasnik;
-            this.CenaMes = cenaMes;
-            this.CenaGod = cenaGod;
-            this.CenaDan = cenaDan;
-            this.CenaGrupa = cenaGrupa;
-            this.CenaPersonal = cenaPersonal;
+            this.naziv = naziv;
+            this.adresa = adresa;
+            this.godina = godina;
+            this.vlasnik = vlasnik;
+            this.cenaMes = cenaMes;
+            this.cenaGod = cenaGod;
+            this.cenaDan = cenaDan;
+            this.cenaGrupa = cenaGrupa;
+            this.cenaPersonal = cenaPersonal;
         }
+        public FitnesCentar() { }
 
         public string Naziv { get => naziv; set => naziv = value; }
         public string Adresa { get => adresa; set => adresa = value; }
@@ -36,5 +40,6 @@ namespace WebProjekat.Models
         public int CenaDan { get => cenaDan; set => cenaDan = value; }
         public int CenaGrupa { get => cenaGrupa; set => cenaGrupa = value; }
         public int CenaPersonal { get => cenaPersonal; set => cenaPersonal = value; }
+        public int Godina { get => godina; set => godina = value; }
     }
 }

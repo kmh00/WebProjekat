@@ -1,0 +1,69 @@
+﻿@using WebProjekat.Models
+@model WebProjekat.Models.FitnesCentar
+
+@{
+    ViewBag.Title = "Detalji";
+}
+
+<h2>Detalji</h2>
+
+<table border="1">
+    <tr>
+        <th>Naziv</th>
+        <th>@Model.Naziv</th>
+    </tr>
+    <tr>
+        <th>Adresa</th>
+        <td>@Model.Adresa</td>
+    </tr>
+    <tr>
+        <th>Godina otvaranja</th>
+        <td>@Model.Godina</td>
+    </tr>
+    <tr>
+        <th>Vlasnik</th>
+        <td>@Model.Vlasnik</td>
+    </tr>
+    <tr>
+        <th>Cena mesecne clanarine</th>
+        <td>@Model.CenaMes</td>
+    </tr>
+    <tr>
+        <th>Cena godisnje clanarine</th>
+        <td>@Model.CenaGod</td>
+    </tr>
+    <tr>
+        <th>Cena treninga</th>
+        <td>@Model.CenaDan</td>
+    </tr>
+    <tr>
+        <th>Cena grupnog treninga</th>
+        <td>@Model.CenaGrupa</td>
+    </tr>
+    <tr>
+        <th>Cena personalnog trenera</th>
+        <td>@Model.CenaPersonal</td>
+    </tr>
+</table>
+<h3>Grupni treninzi</h3>
+<table border="1">
+    <tr>
+        <th>Naziv</th>
+        <th>Tip</th>
+        <th>Trajanje</th>
+        <th>Datum</th>
+        <th>Maks ucesnika</th>
+    </tr>
+    @foreach (var i in (List<GrupniTrening>)TempData["Grupe"])
+    {
+        <tr>
+            <td>@i.Naziv</td>
+            <td>@i.Tip.ToString()</td>
+            <td>@i.Trajanje</td>
+            <td>@i.Vreme.ToString("dd/MM/yyyy HH:mm")</td>
+            <td>@i.MaxPosjetilaca</td>
+           
+        </tr>
+
+    }
+</table>
