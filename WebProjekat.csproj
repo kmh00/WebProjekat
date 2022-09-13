@@ -184,6 +184,8 @@
     <Content Include="Views\Trener\TrenerTreninzi.cshtml" />
     <Content Include="Views\Vlasnik\Treneri.cshtml" />
     <Content Include="Views\Vlasnik\DodajTrenera.cshtml" />
+    <Content Include="Views\Trener\DodajTrening.cshtml" />
+    <Content Include="Views\Trener\UrediTrening.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -15,6 +15,7 @@ namespace WebProjekat.Models
         DateTime vreme;
         int maxPosjetilaca;
         List<Korisnik> posjetioci;
+        bool obrisan;
 
         public GrupniTrening(string naziv, Tip tip, int trajanje, DateTime vreme, int maxPosjetilaca, List<Korisnik> posjetioci, FitnesCentar fitnesCentar)
         {
@@ -25,6 +26,7 @@ namespace WebProjekat.Models
             this.MaxPosjetilaca = maxPosjetilaca;
             this.Posjetioci = posjetioci;
             this.FitnesCentar = fitnesCentar;
+            this.obrisan = false;
         }
 
         public GrupniTrening() { }
@@ -36,5 +38,6 @@ namespace WebProjekat.Models
         public int MaxPosjetilaca { get => maxPosjetilaca; set => maxPosjetilaca = value; }
         public List<Korisnik> Posjetioci { get => posjetioci; set => posjetioci = value; }
         public FitnesCentar FitnesCentar { get => fitnesCentar; set => fitnesCentar = value; }
+        public bool Obrisan { get => obrisan; set => obrisan = value; }
     }
 }

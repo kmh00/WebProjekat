@@ -1,7 +1,73 @@
-﻿
+﻿@using WebProjekat.Models
+@model IEnumerable<GrupniTrening>
 @{
     ViewBag.Title = "TrenerTreninzi";
 }
 
 <h2>TrenerTreninzi</h2>
+<table border="1">
+    <tr><th colspan="5">Moji grupni treninzi</th></tr>
+    <tr>
+        <th>Naziv</th>
+        <th>Tip</th>
+        <th>Trajanje</th>
+        <th>Datum</th>
+        <th>Maks ucesnika</th>
+    </tr>
 
+    @foreach (var v in Model)
+    {
+
+        if (v.Obrisan)
+        {
+
+            continue;
+        }
+        <tr>
+            <td>@v.Naziv</td>
+            <td>@v.Tip.ToString()</td>
+            <td>@v.Trajanje</td>
+            <td>@v.Vreme.ToString("dd/MM/yyyy HH:mm")</td>
+            <td>@v.MaxPosjetilaca</td>
+            @if (((Korisnik)Session["Korisnik"]).Uloga == Uloga.trener)
+            {
+                <td>
+                    <form action="~/Trener/ObrisiTrening">
+                        <input type="text" value="@v.Naziv" hidden name="naziv" />
+                        <input type="submit" value="Obrisi" />
+                    </form>
+                </td>
+                <td>
+                    <form action="~/Trener/UrediTrening">
+                        <input type="text" value="@v.Naziv" hidden name="naziv" />
+                        <input type="submit" value="Uredi" />
+                    </form>
+                </td>
+            }
+        </tr>
+
+    }
+</table>
+
+<form method="post" action="~/Trener/Sortiranje">
+    <select name="Sortiraj" id="sort">
+        <option value="nazivOp">Naziv Opadajuce</option>
+        <option value="nazivRA">Naziv Rastuce</option>
+        <option value="tipOP">Tip Opadajuce</option>
+        <option value="tipRA">Tip Rastuce</option>
+        <option value="datumOP">Datum Opadajuce</option>
+        <option value="datumRA">Datum Rastuce</option>
+    </select>
+    <br>
+    <input type="submit" value="Sortiraj">
+</form>
+@if (((Korisnik)Session["Korisnik"]).Uloga == Uloga.trener)
+{
+    <form action="~/Trener/DodajTrening">
+        <input type="submit" value="Dodaj Trening" />
+    </form>
+}
+else if (((Korisnik)Session["Korisnik"]).Uloga == Uloga.posetilac)
+{
+
+}

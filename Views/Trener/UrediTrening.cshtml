@@ -1,0 +1,59 @@
+﻿@using WebProjekat.Models
+@model WebProjekat.Models.GrupniTrening
+@{
+    ViewBag.Title = "UrediTrening";
+}
+
+<h2>UrediTrening</h2>
+<p>@ViewBag.Message</p>
+<form action="~/Trener/Uredi" method="post">
+    <table>
+        <tr>
+            <td>Naziv:</td>
+            <td><input readonly type="text" value="@Model.Naziv"name="Naziv" /></td>
+        </tr>
+        <tr>
+            <td>Trajanje:</td>
+            <td><input type="number" value="@Model.Trajanje" name="Trajanje" /></td>
+        </tr>
+        <tr>
+            <td>Maksimalan broj posetilaca:</td>
+            <td><input type="number" value="@Model.MaxPosjetilaca" name="Max" /></td>
+        </tr>
+        <tr>
+            <td>Tip:</td>
+            <td>
+                <select name="Tip" id="tip">
+                    @if (Model.Tip == Tip.bodyPump)
+                    {
+                        <option value="yoga">yoga</option>
+                        <option value="kardio">kardio</option>
+                        <option value="bodyPump" selected>Body Pump</option>
+                    }
+                    else if (Model.Tip == Tip.yoga)
+                    {
+                        <option value="yoga" selected>yoga</option>
+                        <option value="kardio">kardio</option>
+                        <option value="bodyPump" selected>Body Pump</option>
+                    }
+                    else if (Model.Tip == Tip.kardio)
+                    {
+                        <option value="yoga">yoga</option>
+                        <option value="kardio"selected>kardio</option>
+                        <option value="bodyPump" selected>Body Pump</option>
+                    }
+                </select>
+
+            </td>
+        </tr>
+        <tr>
+            <td>Datum:</td>
+            <td><input type="date" name="Vreme" value="@Model.Vreme" /></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Uredi Trening" />
+            </td>
+        </tr>
+    </table>
+</form>
