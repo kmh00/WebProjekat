@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Prijava</h2>
+<p>@ViewBag.Message</p>
+<div>
+    <form action="~/Home/Login" method="post">
+        <table>
+            <tr>
+                <td>Korisnicko Ime:</td>
+                <td><input type="text" name="KorIme" /></td>
+            </tr>
+            <tr>
+                <td>Lozinka:</td>
+                <td><input type="password" name="Lozinka" /></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Prijavi se" />
+                </td>
+            </tr>
+        </table>
+    </form>
+    <br />
+    <p>Ako nemate nalog, <a href="~/Home/Registration">Registrujte se</a></p>
+</div>

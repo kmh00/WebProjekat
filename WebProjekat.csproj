@@ -122,11 +122,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\FitnesCentarController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProfilController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Data\FitnesCentarData.cs" />
     <Compile Include="Models\Data\GrupniTreningData.cs" />
+    <Compile Include="Models\Data\KorisnikData.cs" />
     <Compile Include="Models\FitnesCentar.cs" />
     <Compile Include="Models\GrupniTrening.cs" />
     <Compile Include="Models\Komentar.cs" />
@@ -136,6 +138,7 @@
   <ItemGroup>
     <Content Include="App_Data\FitnesCentri.xml" />
     <Content Include="App_Data\GrupniTreninzi.xml" />
+    <Content Include="App_Data\Korisnici.xml" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -168,10 +171,11 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\FitnesCentar\Detalji.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\Register.cshtml" />
+    <Content Include="Views\Profil\UrediProfil.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

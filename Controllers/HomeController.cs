@@ -15,19 +15,79 @@ namespace WebProjekat.Controllers
             return View(FitnesCentarData.GetAllFitnesCentri());
 
         }
-
-        public ActionResult About()
+        public ActionResult Login(string korIme, string lozinka)
         {
-            ViewBag.Message = "Your application description page.";
+            List<Korisnik> korisnici = KorisnikData.GetAllKorisnici();
+            Korisnik korisnik = korisnici.Find(k => k.KorIme.Equals(korIme) && k.Lozinka.Equals(lozinka));
 
-            return View();
+            if (korisnik == null)
+            {
+                ViewBag.Message = $"Korisnik ne postoji!";
+                return View("Login");
+            }
+            Session["Korisnik"] = korisnik;
+            return RedirectToAction("Index");
+            
+        }
+        public ActionResult Login1()
+        {
+            return View("Login");
         }
 
-        public ActionResult Contact()
+        public ActionResult Logout()
         {
-            ViewBag.Message = "Your contact page.";
+            Session["Korisnik"] = null;
+            return RedirectToAction("Index");
+        }
+        public ActionResult Register(string KorIme,string Lozinka, string Ime, string Prezime, string Email,Pol pol, DateTime DatRodj )
+        {
+            List<Korisnik> korisnici = KorisnikData.GetAllKorisnici();
 
-            return View();
+            if (KorIme == null || Lozinka == null || Ime == null || Prezime == null || Email == null || DatRodj == null)
+            {
+                ViewBag.Message = $"Molimo popunite polja.";
+                return View("Registracija");
+            }
+
+            foreach (Korisnik k in korisnici)
+            {
+                if (k.KorIme == KorIme)
+                {
+                    ViewBag.Message = $"Korisnik sa unesenim korisnickim imenom vec postoji.";
+                    return View("Register");
+                }
+            }
+
+            if (KorIme.Length < 3)
+            {
+                ViewBag.Message = $"Korsinicko ime mora imati vise od 3 karaktera.";
+                return View("Register");
+            }
+            if (Lozinka.Length < 6)
+            {
+                ViewBag.Message = $"Lozinka mora da ima bar 6 karaktera.";
+                return View("Register");
+            }
+            if (!Email.Contains("@"))
+            {
+                ViewBag.Message = $"Nepostojeci email.";
+                return View("Register");
+            }
+            if (DatRodj > DateTime.Now)
+            {
+                ViewBag.Message = $"Unesite ispravan datum rodjenja.";
+                return View("Register");
+            }
+
+            Korisnik korisnik = new Korisnik(KorIme, Lozinka, Ime, Prezime, pol, Email, DatRodj, Uloga.posetilac);
+
+            KorisnikData.DodajKorisnika(korisnik);
+            Session["Korisnik"] = korisnik;
+            return RedirectToAction("Index");
+        }
+        public ActionResult Registration()
+        {
+            return View("Register");
         }
 
         public ActionResult Sortiranje(string Sortiraj)

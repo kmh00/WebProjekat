@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using WebProjekat.Models
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -18,12 +19,45 @@
                 </button>
                 @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
+
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
+                @{
+                    if ((Korisnik)Session["Korisnik"] == null)
+                    {
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Pocetna stranica", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Prijavi se", "Login1", "Home")</li>
+                            <li>@Html.ActionLink("Registruj se", "Registration", "Home")</li>
+                        </ul>
+                    }
+                    else if (((Korisnik)Session["Korisnik"]).Uloga == Uloga.posetilac)
+                    {
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Pocetna stranica", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Uredi profil", "UrediProfil", "Profil")</li>
+                        <li>@Html.ActionLink("Moji treninzi", "Registration", "Home")</li>
+                        <li>@Html.ActionLink("Odjavi me", "Logout", "Home")</li>
+                    </ul>
+                    }
+                    else if (((Korisnik)Session["Korisnik"]).Uloga == Uloga.trener)
+                    {
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Pocetna stranica", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Uredi profil", "UrediProfil", "Profil")</li>
+                            <li>@Html.ActionLink("Moji treninzi", "Registration", "Home")</li>
+                            <li>@Html.ActionLink("Odjavi me", "Logout", "Home")</li>
+                        </ul>
+                    }
+                    else if (((Korisnik)Session["Korisnik"]).Uloga == Uloga.vlasnik)
+                    {
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Pocetna stranica", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Uredi profil", "UrediProfil", "Profil")</li>
+                            <li>@Html.ActionLink("Moji fitness centri", "Registration", "Home")</li>
+                            <li>@Html.ActionLink("Odjavi me", "Logout", "Home")</li>
+                        </ul>
+                    }
+                }
             </div>
         </div>
     </div>

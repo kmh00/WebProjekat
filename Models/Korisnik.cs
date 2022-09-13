@@ -10,7 +10,7 @@ namespace WebProjekat.Models
     public enum Pol { Muski, Zenski}
     public class Korisnik
     {
-        string KorIme;
+        string korIme;
         string lozinka;
         string ime;
         string prezime;
@@ -26,7 +26,7 @@ namespace WebProjekat.Models
 
         public Korisnik(string korIme, string lozinka, string ime, string prezime, Pol pol, string email, DateTime datumRodj, Uloga uloga)
         {
-            this.KorIme1 = korIme;
+            this.KorIme = korIme;
             this.Lozinka = lozinka;
             this.Ime = ime;
             this.Prezime = prezime;
@@ -46,7 +46,7 @@ namespace WebProjekat.Models
 
         }
 
-        public string KorIme1 { get => KorIme; set => KorIme = value; }
+        public string KorIme { get => korIme; set => korIme = value; }
         public string Lozinka { get => lozinka; set => lozinka = value; }
         public string Ime { get => ime; set => ime = value; }
         public string Prezime { get => prezime; set => prezime = value; }

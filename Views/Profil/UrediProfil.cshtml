@@ -1,0 +1,65 @@
+﻿@using WebProjekat.Models
+@{
+    ViewBag.Title = "UrediProfil";
+    var k = (Korisnik)Session["Korisnik"];
+}
+
+<h2>UrediProfil</h2>
+<p>@ViewBag.Message</p>
+<div>
+    <form action="~/Profil/Uredi" method="post">
+        <table>
+            <tr>
+                <td>Korisnicko ime:</td>
+                <td><input type="text" name="KorIme" value="@k.KorIme" readonly /></td>
+            </tr>
+            <tr>
+                <td>Lozinka:</td>
+                <td><input type="password" name="Lozinka" value="@k.Lozinka" /></td>
+            </tr>
+            <tr>
+                <td>Ime:</td>
+                <td><input type="text" name="Ime" value="@k.Ime" /></td>
+            </tr>
+            <tr>
+                <td>Prezime:</td>
+                <td><input type="text" name="Prezime" value="@k.Prezime" /></td>
+            </tr>
+            <tr>
+                <td>Pol:</td>
+                <td>
+                    
+                    @if (k.Pol == Pol.Muski)
+                    {
+                       <select name="pol" id="polovi">
+                           <option value="Muski" selected>Muski</option>
+                           <option value="Zenski">Zenski</option>
+                       </select>
+                    }
+                    else
+                    {
+                    <select name="pol" id="polovi">
+                        <option value="Muski" >Muski</option>
+                        <option value="Zenski"selected>Zenski</option>
+                    </select>
+                    }
+                    
+                </td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><input type="text" name="Email" value="@k.Email" /></td>
+            </tr>
+            <tr>
+                <td>Datum rodjenja:</td>
+                <td><input type="date" name="DatRodj" value="@k.DatumRodj" /></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Sacuvaj" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+

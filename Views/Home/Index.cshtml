@@ -5,57 +5,62 @@
 }
 <head>
     <title>Pocetna</title>
+    
 </head>
+
 <body>
-
+    
     <h3>Fitnes centri</h3>
-    <table border="1">
+
+    
+
+        <table border="1">
 
 
-        <tr>
-            <th>Naziv</th>
-            <th>Adresa</th>
-            <th>Godina otvaranja</th>
-
-        </tr>
-        @foreach (var centar in Model)
-        {
             <tr>
-                <td>@centar.Naziv</td>
-                <td>@centar.Adresa</td>
-                <td>@centar.Godina</td>
-                <td>
-                    <form method="post" action="~/FitnesCentar/Detalji">
-                        <input type="text" name="naziv" value="@centar.Naziv" hidden />
-                        <input type="submit" value="Detalji" />
-                    </form>
-                </td>
+                <th>Naziv</th>
+                <th>Adresa</th>
+                <th>Godina otvaranja</th>
+
             </tr>
+            @foreach (var centar in Model)
+            {
+                <tr>
+                    <td>@centar.Naziv</td>
+                    <td>@centar.Adresa</td>
+                    <td>@centar.Godina</td>
+                    <td>
+                        <form method="post" action="~/FitnesCentar/Detalji">
+                            <input type="text" name="naziv" value="@centar.Naziv" hidden />
+                            <input type="submit" value="Detalji" />
+                        </form>
+                    </td>
+                </tr>
 
-        }
-    </table>
-    <br><br>
-    <form method="post" action="~/Home/Sortiranje">
-        <select name="Sortiraj" id="sort">
-            <option value="nazivOp">Naziv Opadajuce</option>
-            <option value="nazivRA">Naziv Rastuce</option>
-            <option value="godOP">Godiste Opadajuce</option>
-            <option value="godRA">Godiste Rastuce</option>
-            <option value="adresaOP">Adresa Opadajuce</option>
-            <option value="adresaRA">Adresa Rastuce</option>
-        </select>
-        <br>
-        <input type="submit" value="Sortiraj">
-    </form>
+            }
+        </table>
+        <br><br>
+        <form method="post" action="~/Home/Sortiranje">
+            <select name="Sortiraj" id="sort">
+                <option value="nazivOp">Naziv Opadajuce</option>
+                <option value="nazivRA">Naziv Rastuce</option>
+                <option value="godOP">Godiste Opadajuce</option>
+                <option value="godRA">Godiste Rastuce</option>
+                <option value="adresaOP">Adresa Opadajuce</option>
+                <option value="adresaRA">Adresa Rastuce</option>
+            </select>
+            <br>
+            <input type="submit" value="Sortiraj">
+        </form>
 
-    <form method="post" action="~/Home/Pretrazi">
-        Naziv:<br>
-        <input type="text" name="naziv" /><br>
-        Godina otvaranja:<br>
-        Od:<input type="number" name="godina1" value="1970" max="2030" min="1970" />Do:<input type="number" name="godina2" max="2030" min="1970" value="2030"/>​<br>
-        Adresa:<br>
-        <input type="text" name="adresa" /><br>
-        <input type="submit" value="Pretrazi" />
+        <form method="post" action="~/Home/Pretrazi">
+            Naziv:<br>
+            <input type="text" name="naziv" /><br>
+            Godina otvaranja:<br>
+            Od:<input type="number" name="godina1" value="1970" max="2030" min="1970" />Do:<input type="number" name="godina2" max="2030" min="1970" value="2030" />​<br>
+            Adresa:<br>
+            <input type="text" name="adresa" /><br>
+            <input type="submit" value="Pretrazi" />
 
-    </form>
+        </form>
 </body>
