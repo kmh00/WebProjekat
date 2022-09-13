@@ -66,8 +66,40 @@
     <form action="~/Trener/DodajTrening">
         <input type="submit" value="Dodaj Trening" />
     </form>
+    <h3>Pretraga</h3>
+    <form method="post" action="~/Trener/PretragaTrener">
+        Naziv:<br>
+        <input type="text" name="naziv" /><br>
+        Tip:<br>
+        <select name="Tip" id="tip">
+            <option value="yoga">yoga</option>
+            <option value="kardio">kardio</option>
+            <option value="bodyPump">Body Pump</option>
+        </select>
+        <br>
+        Datum:<br>
+        <input type="date" name="min" value="@DateTime.MinValue" />
+        <input type="date" name="max" value="@DateTime.MaxValue" /><br>
+        <input type="submit" value="Pretrazi" />
+
+    </form>
 }
 else if (((Korisnik)Session["Korisnik"]).Uloga == Uloga.posetilac)
 {
+    <h3>Pretraga</h3>
+    <form method="post" action="~/Trener/PretragaPosetilac">
+        Naziv:<br>
+        <input type="text" name="aziv" /><br>
+        Tip:<br>
+        <select name="Tip" id="tip">
+            <option value="yoga">yoga</option>
+            <option value="kardio">kardio</option>
+            <option value="bodyPump">Body Pump</option>
+        </select>
+        <br>
+        Fitness centar:<br>
+        <input type="text" name="fitnesCentar" /><br>
+        <input type="submit" value="Pretrazi" />
 
+    </form>
 }

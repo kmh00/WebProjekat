@@ -158,5 +158,55 @@ namespace WebProjekat.Controllers
             return RedirectToAction("Index", "Home");
             
         }
+
+        public ActionResult PretragaTrener(string naziv, Tip tip, DateTime min, DateTime max)
+        {
+            Korisnik korisnik = (Korisnik)Session["Korisnik"];
+            List<GrupniTrening> treninzi = new List<GrupniTrening>();
+            List<GrupniTrening> list = new List<GrupniTrening>();
+            List<GrupniTrening> filtrirano = new List<GrupniTrening>();
+            if (korisnik.Uloga == Uloga.posetilac)
+                list = korisnik.GrupniTren1;
+            else if (korisnik.Uloga == Uloga.trener)
+                list = korisnik.Trenira;
+            foreach (var v in list)
+            {
+                treninzi.Add(GrupniTreningData.GetAllGT().Find(x => x.Naziv == v.Naziv));
+            }
+            foreach (GrupniTrening trening in treninzi)
+            {
+                if ((!string.IsNullOrEmpty(naziv) && !trening.Naziv.ToLower().Contains(naziv.ToLower())) || tip != trening.Tip || min >trening.Vreme || max<trening.Vreme)
+                    continue;
+                filtrirano.Add(trening);
+            }
+
+
+            return View("TrenerTreninzi", filtrirano);
+        }
+
+        public ActionResult PretraziPosetilac(string naziv, Tip tip, string fitnesCentar)
+        {
+            Korisnik korisnik = (Korisnik)Session["Korisnik"];
+            List<GrupniTrening> treninzi = new List<GrupniTrening>();
+            List<GrupniTrening> list = new List<GrupniTrening>();
+            List<GrupniTrening> filtrirano = new List<GrupniTrening>();
+            if (korisnik.Uloga == Uloga.posetilac)
+                list = korisnik.GrupniTren1;
+            else if (korisnik.Uloga == Uloga.trener)
+                list = korisnik.Trenira;
+            foreach (var v in list)
+            {
+                treninzi.Add(GrupniTreningData.GetAllGT().Find(x => x.Naziv == v.Naziv));
+            }
+            foreach (GrupniTrening trening in treninzi)
+            {
+                if ((!string.IsNullOrEmpty(naziv) && !trening.Naziv.ToLower().Contains(naziv.ToLower())) || tip != trening.Tip || (!string.IsNullOrEmpty(fitnesCentar) && trening.FitnesCentar.Naziv.ToLower() != fitnesCentar.ToLower()))
+                    continue;
+                filtrirano.Add(trening);
+            }
+
+
+            return View("TrenerTreninzi", filtrirano);
+        }
     }
 }
