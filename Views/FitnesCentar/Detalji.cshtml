@@ -62,7 +62,16 @@
             <td>@i.Trajanje</td>
             <td>@i.Vreme.ToString("dd/MM/yyyy HH:mm")</td>
             <td>@i.MaxPosjetilaca</td>
-           
+            @if (Session["Korisnik"] != null && ((Korisnik)Session["Korisnik"]).Uloga == Uloga.posetilac)
+            {
+                <td>
+                    <form action="~/FitnesCentar/Ucestvuj">
+                        <input type="text" name="trening" value="@i.Naziv" hidden />
+                        <input type="submit" value="Ucestvuj" />
+                    </form>
+                </td>
+            }
+
         </tr>
 
     }

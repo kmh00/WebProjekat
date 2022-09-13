@@ -22,5 +22,27 @@ namespace WebProjekat.Controllers
             TempData["Grupe"] = treninzi;
                 return View("Detalji",centar);
         }
+
+        public ActionResult Ucestvuj(string trening)
+        {
+            Korisnik korisnik = (Korisnik)Session["Korisnik"];
+            GrupniTrening grupniTrening = (GrupniTreningData.GetAllGT()).Find(x => x.Naziv == trening);
+            List<GrupniTrening> list = new List<GrupniTrening>();
+            if (grupniTrening.MaxPosjetilaca == grupniTrening.Posjetioci.Count())
+            {
+                ViewBag.Message = "Sva mjesta su popunjena";
+                return RedirectToAction("Index", "Home");
+            }
+            else if(grupniTrening.Posjetioci.Contains(korisnik))
+                {
+                ViewBag.Message = "Vec ste prijavljeni na trenin";
+                return RedirectToAction("Index", "Home");
+            }
+            grupniTrening.Posjetioci.Add(korisnik);
+            korisnik.GrupniTren1.Add(grupniTrening);
+            KorisnikData.Uredikorisnika(korisnik);
+            GrupniTreningData.UrediGT(grupniTrening);
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
