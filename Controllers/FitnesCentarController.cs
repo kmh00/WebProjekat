@@ -10,7 +10,7 @@ namespace WebProjekat.Controllers
 {
     public class FitnesCentarController : Controller
     {
-        // GET: FitnesCentar
+        
         public ActionResult Index()
         {
             return View();
